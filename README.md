@@ -44,6 +44,21 @@ node scripts/verify.mjs live https://<public-hostname>
 
 ## Deployment ownership
 
+### Deploy your own
+
+The Worker itself has no secrets or account-specific bindings:
+
+```sh
+git clone https://github.com/remocloudflare/whoami-identity-demo.git
+cd whoami-identity-demo
+npm ci
+npm run check
+npx wrangler login
+npm run deploy
+```
+
+This publishes an independent `workers.dev` deployment in your authenticated Cloudflare account. Cloudflare Access, One-time PIN, and a custom hostname are optional external policies; deploying this repository does not create them.
+
 Worker source and Worker deployment are **Wrangler-managed**. Use `npm run check` before a release, then use either `npm run deploy` or `npx wrangler deploy --keep-vars` when an authorized operator deliberately deploys. The npm scripts are wrappers around Wrangler, not a second deployment owner.
 
 Production custom-domain ownership and the existing Access OTP app are managed externally and intentionally **not** represented in this repository's Terraform. There is no Terraform in this repository; deploy this standalone Worker only through its Wrangler-backed npm scripts or Wrangler directly.
