@@ -1,0 +1,19 @@
+{
+  "name": "whoami-identity-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test",
+    "verify": "node scripts/verify.mjs offline",
+    "verify:live": "node scripts/verify.mjs live",
+    "check": "npm test && node scripts/verify.mjs offline && wrangler deploy --dry-run",
+    "deploy": "wrangler deploy --keep-vars"
+  },
+  "devDependencies": {
+    "wrangler": "^4.40.0"
+  }
+}
